@@ -1,9 +1,11 @@
 .img-container {
-    background-color: red;
+    /* background-color: red; */
 }
 
 img {
     height: 250px;
     width: 250px;
     cursor: pointer;
+    padding: 10px;
+    border-radius: 20px;
 }
