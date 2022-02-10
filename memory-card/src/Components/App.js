@@ -3,26 +3,17 @@ import Card from './Card';
 import React, { useState, useEffect } from 'react';
 
 const App = () => {
-    const [characters, setCharacters] = useState([
-        {
-            name: 'Darth Vader',
-            link: 'https://lumiere-a.akamaihd.net/v1/images/Darth-Vader_6bda9114.jpeg?region=0%2C23%2C1400%2C785&width=960',
-            clicked: false,
-        },
+    const [characters, setCharacters] = useState([]);
 
-        {
-            name: 'Leia Organa',
-            link: 'https://s3.amazonaws.com/libapps/accounts/81381/images/leia.jpg',
-            clicked: false,
-        },
-        {
-            name: 'Boba Fett',
-            link: '',
-            clicked: false,
-        },
-    ]);
+    const getDataAsync = async function () {
+        const response = await fetch('./data.json');
+        const json = await response.json();
+        setCharacters(json);
+    };
 
-    const [score, setScore] = useState(0);
+    useEffect(() => {
+        getDataAsync();
+    }, []);
 
     useEffect(() => {
         characters.sort(() => Math.random() - 0.5);
@@ -45,6 +36,9 @@ const App = () => {
 
             <div className='card-container'>
                 {characters.map((chars, id) => {
+                    if (id > 3) {
+                        return null;
+                    }
                     return (
                         <Card
                             key={id}

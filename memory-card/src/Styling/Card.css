@@ -1,0 +1,9 @@
+.img-container {
+    background-color: red;
+}
+
+img {
+    height: 250px;
+    width: 250px;
+    cursor: pointer;
+}
